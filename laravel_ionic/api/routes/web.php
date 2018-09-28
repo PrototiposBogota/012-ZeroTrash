@@ -45,3 +45,8 @@ Route::resource('users', 'UsersController');
 Route::get('/users/edit/{id}', 'UsersController@edit')->name('users.edit');
 Route::get('/users/destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 Route::post('/users/update/{id}', 'UsersController@update')->name('users.update');
+
+Route::resource('inventory', 'recyclingInventoryController');
+Route::get('/inventory/edit/{id}', 'recyclingInventoryController@edit')->name('inventory.edit');
+Route::get('/inventory/destroy/{id}', 'recyclingInventoryController@destroy')->name('inventory.destroy');
+Route::post('/inventory/update/{id}', 'recyclingInventoryController@update')->name('inventory.update');

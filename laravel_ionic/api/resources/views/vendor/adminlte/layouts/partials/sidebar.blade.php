@@ -36,7 +36,7 @@
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li>
             <li><a href="{{route('novelty.index')}}"><i class='fa fa-paper-plane' aria-hidden="true"></i> <span>Novedades</span></a></li>
             <li><a href="{{route('cars.index')}}"><i class="fa fa-car" aria-hidden="true"></i> <span>Carros</span></a></li>
-            <li><a href="#"><i class="fa fa-building" aria-hidden="true"></i> <span>Inventario de Reciclaje</span></a></li>
+            <li><a href="{{route('inventory.index')}}"><i class="fa fa-building" aria-hidden="true"></i> <span>Inventario de Reciclaje</span></a></li>
             <li><a href="{{route('users.index')}}"><i class='fa fa-users' aria-hidden="true"></i> <span>Usuario Registrados</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>

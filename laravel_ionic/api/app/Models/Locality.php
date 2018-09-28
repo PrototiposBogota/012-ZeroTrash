@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Locality extends Model
 {
-    protected $table = 'novelty';
+    protected $table = 'locality';
     protected $fillable = ['id', 'description','id_departament'];
 }

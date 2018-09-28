@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cars;
-use App\Models\Novelty;
 use App\Models\NoveltyType;
+use App\Models\RecyclingInventory;
+use App\Models\RecyclingType;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class NoveltyController extends Controller
+class recyclingInventoryController extends Controller
 {
-
-
     /**
-     * Show the application dashboard.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $novelty = Novelty::all()->toArray();
-        return view('novelty.index', compact('novelty'));
+        $inventory = RecyclingInventory::select('recycling_inventory.id', 'users.name','recycling_type.description','recycling_inventory.cantidad')
+                                         ->join('users','users.id','=','recycling_inventory.id_user')
+                                         ->join('recycling_type','recycling_type.id','=','recycling_inventory.id_recycling_type')
+                                         ->get()
+                                         ->toArray();
+        //dd($inventory);
+        return view('inventory.index', compact('inventory'));
     }
 
     /**
@@ -32,9 +35,8 @@ class NoveltyController extends Controller
     public function create()
     {
         $users = User::where('id', '=',Auth::user()->id)->get();
-        $noveltyType = NoveltyType::all();
-        $cars = Cars::all();
-        return view('novelty.create',  compact('users','noveltyType','cars'));
+        $recyclingType = RecyclingType::all();
+        return view('inventory.create',  compact('users','recyclingType'));
     }
 
     /**
@@ -45,15 +47,7 @@ class NoveltyController extends Controller
      */
     public function store(Request $request)
     {
-        $novelty = new Novelty([
-            'id_novelty_type' => $request->get('id_novelty_type'),
-            'novelty' => $request->get('novelty'),
-            'id_user' => $request->get('id_user'),
-            'id_car' => $request->get('id_car')
-        ]);
-
-        $novelty->save();
-        return redirect('/novelty');
+        //
     }
 
     /**
@@ -62,9 +56,9 @@ class NoveltyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
@@ -75,8 +69,7 @@ class NoveltyController extends Controller
      */
     public function edit($id)
     {
-        $novelty = Novelty::find($id);
-        return view('novelty.edit', compact('novelty','id'));
+        //
     }
 
     /**
@@ -88,13 +81,7 @@ class NoveltyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $novelty = Novelty::find($id);
-        $novelty->id_novelty_type = $request->get('id_novelty_type');
-        $novelty->novelty = $request->get('novelty');
-        $novelty->id_user = $request->get('id_user');
-        $novelty->id_car = $request->get('id_car');
-        $novelty->save();
-        return redirect('/novelty');
+        //
     }
 
     /**
@@ -105,10 +92,6 @@ class NoveltyController extends Controller
      */
     public function destroy($id)
     {
-        $novelty = Novelty::find($id);
-        $novelty->delete();
-
-        return redirect('/novelty');
+        //
     }
-
 }

@@ -13,22 +13,22 @@
                     <div class="panel-heading">Novedades</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('novelty.store') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('inventory.store') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('id_novelty_type') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('id_recycling_type') ? ' has-error' : '' }}">
                                 <label for="id_novelty_type" class="col-md-4 control-label">Tipo Novedad</label>
 
                                 <div class="col-md-6">
-                                    <select id="id_novelty_type" type="text" class="form-control" name="id_novelty_type" required autofocus>
-                                        @foreach($noveltyType as $values)
+                                    <select id="id_recycling_type" type="text" class="form-control" name="id_recycling_type" required autofocus>
+                                        @foreach($recyclingType as $values)
                                             <option value="{{$values->id}}">{{$values->description}}</option>
                                         @endforeach
                                     </select>
 
-                                    @if ($errors->has('id_novelty_type'))
+                                    @if ($errors->has('id_recycling_type'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('id_novelty_type') }}</strong>
+                                        <strong>{{ $errors->first('id_recycling_type') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -36,15 +36,15 @@
 
 
 
-                            <div class="form-group{{ $errors->has('novelty') ? ' has-error' : '' }}">
-                                <label for="novelty" class="col-md-4 control-label">Descripcion Novedad</label>
+                            <div class="form-group{{ $errors->has('cantidad') ? ' has-error' : '' }}">
+                                <label for="cantidad" class="col-md-4 control-label">Descripcion Novedad</label>
 
                                 <div class="col-md-6">
-                                    <input id="novelty" type="text" class="form-control" name="novelty" value="{{ old('novelty') }}" placeholder="Ingrese la descripcion de la novedad" required autofocus>
+                                    <input id="cantidad" type="text" class="form-control" name="cantidad" value="{{ old('cantidad') }}" placeholder="Ingrese la descripcion de la novedad" required autofocus>
 
-                                    @if ($errors->has('novelty'))
+                                    @if ($errors->has('cantidad'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('novelty') }}</strong>
+                                        <strong>{{ $errors->first('cantidad') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -68,26 +68,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="form-group{{ $errors->has('id_car') ? ' has-error' : '' }}">
-                                <label for="id_car" class="col-md-4 control-label">Carro</label>
-
-                                <div class="col-md-6">
-                                    <select id="id_car" type="text" class="form-control" name="id_car" required autofocus>
-                                        @foreach($cars as $values)
-                                            <option value="{{$values->id}}">{{$values->mark}}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @if ($errors->has('id_car'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('id_car') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">

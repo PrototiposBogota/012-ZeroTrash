@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Cars;
-use App\Locality;
+use App\Models\Cars;
+use App\Models\Locality;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarsController extends Controller
 {
@@ -28,7 +29,7 @@ class CarsController extends Controller
     public function create()
     {
         $locality = Locality::all();
-        $users = User::all();
+        $users = User::where('id', '=',Auth::user()->id)->get();
         return view('cars.create', compact('locality','users'));
     }
 
@@ -72,8 +73,8 @@ class CarsController extends Controller
     public function edit($id)
     {
         $cars = Cars::find($id);
-        $locality = Locality::all();
-        $users = Users::all();
+        $locality = Locality::where('id','=',$cars->id_locality)->get();
+        $users = User::where('id', '=',Auth::user()->id)->get();
         return view('cars.edit', compact('cars','locality', 'users', 'id'));
     }
 

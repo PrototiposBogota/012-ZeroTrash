@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NoveltyType extends Model
+class Roles extends Model
 {
-    protected $table = 'novelty_type';
+    protected $table = 'roles';
     protected $fillable = ['id', 'description'];
 }

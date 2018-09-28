@@ -13,17 +13,14 @@
                     <div class="panel-heading">Novedades</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('novelty.store') }}">
+                        <form class="form-horizontal" method="POST" action="{{route('novelty.update', $novelty->id)}}">
                             {{ csrf_field() }}
-
                             <div class="form-group{{ $errors->has('id_novelty_type') ? ' has-error' : '' }}">
                                 <label for="id_novelty_type" class="col-md-4 control-label">Tipo Novedad</label>
 
                                 <div class="col-md-6">
                                     <select id="id_novelty_type" type="text" class="form-control" name="id_novelty_type" required autofocus>
-                                        @foreach($noveltyType as $values)
-                                            <option value="{{$values->id}}">{{$values->description}}</option>
-                                        @endforeach
+                                        <option value="{{$novelty->id_novelty_type}}">Hola</option>
                                     </select>
 
                                     @if ($errors->has('id_novelty_type'))
@@ -40,7 +37,7 @@
                                 <label for="novelty" class="col-md-4 control-label">Descripcion Novedad</label>
 
                                 <div class="col-md-6">
-                                    <input id="novelty" type="text" class="form-control" name="novelty" value="{{ old('novelty') }}" placeholder="Ingrese la descripcion de la novedad" required autofocus>
+                                    <input id="novelty" type="text" class="form-control" name="novelty" value="{{$novelty->novelty}}" placeholder="Ingrese la descripcion de la novedad" required autofocus>
 
                                     @if ($errors->has('novelty'))
                                         <span class="help-block">
@@ -56,9 +53,7 @@
 
                                 <div class="col-md-6">
                                     <select id="id_user" type="text" class="form-control" name="id_user" required autofocus>
-                                        @foreach($users as $values)
-                                            <option value="{{$values->id}}">{{$values->name}}</option>
-                                        @endforeach
+                                        <option value="{{$novelty->id_user}}">User 1</option>
                                     </select>
 
                                     @if ($errors->has('id_user'))
@@ -74,9 +69,7 @@
 
                                 <div class="col-md-6">
                                     <select id="id_car" type="text" class="form-control" name="id_car" required autofocus>
-                                        @foreach($cars as $values)
-                                            <option value="{{$values->id}}">{{$values->mark}}</option>
-                                        @endforeach
+                                        <option value="{{$novelty->id_car}}">Toyota</option>
                                     </select>
 
                                     @if ($errors->has('id_car'))
@@ -91,7 +84,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Registrar
+                                        Actualizar
                                     </button>
                                 </div>
                             </div>
@@ -102,4 +95,3 @@
         </div>
     </div>
 @endsection
-
